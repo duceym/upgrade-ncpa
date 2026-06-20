@@ -1,4 +1,5 @@
 # upgrade-ncpa
+Questions or feedback: matthew_ducey@yahoo.com
 PowerShell script that the Nagios check_ncpa utility can call which
 will then upgrade the Nagios NCPA agent and other plugin files/scripts.
 -------------------------------------------------------------------------------------------------
