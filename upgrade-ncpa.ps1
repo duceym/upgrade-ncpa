@@ -45,8 +45,12 @@ param(
 
     [int]$LockMinutes = 60,
 
-    [switch]$Force
+    [switch]$Force,
+
+    [switch]$Version
 )
+
+$ScriptVersion = "1.0.0"
 
 $ErrorActionPreference = "Stop"
 
@@ -132,6 +136,10 @@ function Assert-InstallerSignature {
 }
 
 try {
+    if ($Version) {
+        Exit-Nagios 0 "OK" "upgrade-ncpa.ps1 version $ScriptVersion"
+    }
+
     New-Item -ItemType Directory -Path $WorkDir -Force | Out-Null
 
     $lockFile = Join-Path $WorkDir "upgrade.lock"

@@ -15,6 +15,9 @@ The script will check ncpa-latest.exe to ensure it has been digitally signed by 
 The 3.x NCPA agents are signed, but the 2.x agents are not, so this only supports 3.x agents.
 The script is self-updating — upgrade-ncpa.ps1 itself is included in the plugin list and will be copied
 to the client on every run, keeping it current automatically.
+Logs are written to the "C:\ProgramData\Nagios\NCPA-Upgrade" directory should you need to view results.
+It is advisable to only upgrade one system at a time to ensure you don't break all of your installed agents at once 
+in case something does go wrong.
 
 ## Directory Structure
 Your HTTP or FTP server should be laid out as follows:
@@ -81,6 +84,7 @@ NCPA_TOKEN="${2:-YOUR_NCPA_TOKEN}"
 | `-WorkDir`       | No       | `C:\ProgramData\Nagios\NCPA-Upgrade`   | Working directory for staging and logs                             |
 | `-LockMinutes`   | No       | `60`                                   | Minutes before a stale lock is cleared                             |
 | `-Force`         | No       |                                        | Bypass version check and force reinstall or downgrade              |
+| `-Version`       | No       |                                        | Show script version                                                |
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 Nagios/NCPA plugin that upgrades NCPA from a central HTTP or FTP URL.
