@@ -1,5 +1,4 @@
 # upgrade-ncpa
-Questions or feedback: matthew_ducey@yahoo.com
 PowerShell script that the Nagios check_ncpa utility can call which
 will then upgrade the Nagios NCPA agent and other plugin files/scripts.
 -------------------------------------------------------------------------------------------------
@@ -95,3 +94,6 @@ NCPA_TOKEN="${2:-YOUR_NCPA_TOKEN}"
 | `-LockMinutes` | No | `60` | Minutes before a stale lock is cleared |
 | `-Force` | No | | Bypass version check and force reinstall or downgrade |
 | `-Version` | No | | Display script version and exit |
+
+
+Questions or feedback: matthew_ducey@yahoo.com
