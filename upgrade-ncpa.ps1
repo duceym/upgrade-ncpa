@@ -27,7 +27,6 @@ Nagios exit codes:
 
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $true)]
     [string]$SourceRoot,
 
     [string]$User,
@@ -36,7 +35,6 @@ param(
 
     [string]$InstallerName = "ncpa-latest.exe",
 
-    [Parameter(Mandatory = $true)]
     [string]$Token,
 
     [string]$PluginDir = "C:\Program Files\Nagios\NCPA\plugins",
@@ -135,11 +133,15 @@ function Assert-InstallerSignature {
     }
 }
 
-try {
-    if ($Version) {
-        Exit-Nagios 0 "OK" "upgrade-ncpa.ps1 version $ScriptVersion"
-    }
+if ($Version) {
+    Write-Output "OK - upgrade-ncpa.ps1 version $ScriptVersion"
+    exit 0
+}
 
+if (-not $SourceRoot) { Write-Output "UNKNOWN - SourceRoot is required"; exit 3 }
+if (-not $Token)      { Write-Output "UNKNOWN - Token is required";      exit 3 }
+
+try {
     New-Item -ItemType Directory -Path $WorkDir -Force | Out-Null
 
     $lockFile = Join-Path $WorkDir "upgrade.lock"
